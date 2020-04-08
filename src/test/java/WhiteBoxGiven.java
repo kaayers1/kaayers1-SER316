@@ -1,5 +1,6 @@
 package test.java;
 
+import main.java.Arizona;
 import main.java.Cart;
 import org.junit.After;
 import org.junit.Before;
@@ -22,7 +23,8 @@ public class WhiteBoxGiven {
 
     @Test
     public void getTax() {
-        assertEquals(4.0, cart.getTax(50, "AZ"), .01);
+    	Arizona state = new Arizona(); 
+        assertEquals(4.0, cart.getTax(50, state.getRate()), .01);
     }
 
 }

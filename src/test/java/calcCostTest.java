@@ -1,50 +1,23 @@
 package test.java;
 
-import main.java.*;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
-import java.lang.reflect.Constructor;
-import java.util.Arrays;
-import java.util.Collection;
-
+import main.java.Alcohol;
 import main.java.Cart;
-import main.java.Cart1;
-import main.java.Cart2;
-import main.java.Cart3;
-import main.java.Cart4;
-import main.java.Cart5;
+import main.java.Dairy;
+import main.java.FrozenFood;
+import main.java.Meat;
+import main.java.Produce;
+import main.java.UnderAgeException;
 
-import static org.junit.Assert.*;
+public class calcCostTest {
+	
 
-@RunWith(Parameterized.class)
-public class BlackBoxGiven {
-
-    private Class<Cart> classUnderTest;
-
-    @SuppressWarnings("unchecked")
-    public BlackBoxGiven(Object classUnderTest) {
-        this.classUnderTest = (Class<Cart>) classUnderTest;
-    }
-
-    // Define all classes to be tested
-    @Parameterized.Parameters
-    public static Collection<Object[]> cartClassUnderTest() {
-        Object[][] classes = {
-            {Cart0.class},
-            {Cart1.class},
-            {Cart2.class},
-            {Cart3.class},
-            {Cart4.class},
-            {Cart5.class}
-        };
-        return Arrays.asList(classes);
-    }
 
     private Cart createCart(int age) throws Exception {
-        Constructor<Cart> constructor = classUnderTest.getConstructor(Integer.TYPE);
-        return constructor.newInstance(age);
+        return new Cart(age); 
     }
 
     // A sample Cart
@@ -902,18 +875,5 @@ public class BlackBoxGiven {
     	assertEquals(edgeCaseNoAlc3Expected, amount, 0.01); 
     }
   
-  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 }

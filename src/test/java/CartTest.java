@@ -1158,7 +1158,7 @@ public class CartTest {
 	    	double amount = edgeCaseNoAlc3.calcCost();
 	    	assertEquals(edgeCaseNoAlc3Expected, amount, 0.01); 
 	    }
-	  
+
 	    
 	    
 	    

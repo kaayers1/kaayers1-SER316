@@ -4,4 +4,9 @@ build/
 /bin/
 *.classpath
 *.project
+<<<<<<< HEAD
 *.metadata/
+||||||| merged common ancestors
+=======
+*.metadata
+>>>>>>> master

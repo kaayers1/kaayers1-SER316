@@ -7,7 +7,7 @@ public class Cart {
 
     protected int userAge;
     public List<Product> cart;
-    public int cartStorage;
+  
 
     /**
      * Calculates the final cost after all savings and tax has been applied. Also

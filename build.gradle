@@ -48,6 +48,7 @@ test {
 // Configure SpotBugs
 /////////////////////////////////////////////////////////////////////////
 
+
  tasks.withType(com.github.spotbugs.SpotBugsTask) {
    reports {
      xml.enabled = false

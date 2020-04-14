@@ -48,7 +48,6 @@ test {
 // Configure SpotBugs
 /////////////////////////////////////////////////////////////////////////
 
- To generate an HTML report instead of XML
  tasks.withType(com.github.spotbugs.SpotBugsTask) {
    reports {
      xml.enabled = false

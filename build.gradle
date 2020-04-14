@@ -1,5 +1,5 @@
 plugins {
-    id "com.github.spotbugs" version "4.0.1"
+    id "com.github.spotbugs" version "3.0.0"
     id "checkstyle"
 }
 
@@ -50,10 +50,6 @@ test {
 // Configure SpotBugs
 /////////////////////////////////////////////////////////////////////////
 
-
-spotbugs {
-  toolVersion = '4.0.1'
-}
 
 
  tasks.withType(com.github.spotbugs.SpotBugsTask) {

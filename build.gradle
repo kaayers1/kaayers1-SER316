@@ -19,6 +19,8 @@ repositories {
 dependencies {
     compile "junit:junit:4.12"
     compile files('cls/')
+
+    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
 }
 
 test {
@@ -47,11 +49,21 @@ test {
 /////////////////////////////////////////////////////////////////////////
 // Configure SpotBugs
 /////////////////////////////////////////////////////////////////////////
+apply plugin: "com.github.spotbugs"
 
 spotbugs {
-  toolVersion = '4.0.1'
+  toolVersion = '3.1.3'
+  ignoreFailures = true
+  effort = 'max'
+  showProgress = true
 }
 
+sourceSets {
+  // we define `main` sourceSet here, so SpotBugs Gradle Plugin generates `spotbugsMain` task
+  main {
+    java.srcDirs = ['src/main/java']
+  }
+}
 
  tasks.withType(com.github.spotbugs.SpotBugsTask) {
    reports {

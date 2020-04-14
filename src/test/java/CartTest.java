@@ -1,53 +1,37 @@
 package test.java;
 
-//Making changes to test travis ci
+import static org.junit.Assert.assertEquals;
 
-import main.java.*;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
-import java.lang.reflect.Constructor;
-import java.util.Arrays;
-import java.util.Collection;
+import main.java.*; 
 
-import main.java.Cart;
-import main.java.Cart1;
-import main.java.Cart2;
-import main.java.Cart3;
-import main.java.Cart4;
-import main.java.Cart5;
+public class CartTest {
 
-import static org.junit.Assert.*;
 
-@RunWith(Parameterized.class)
-public class BlackBoxGiven {
+    Cart nodeCoverage1;
+    Cart nodeCoverage2;
+    Cart pathCoverage1;
+    Cart pathCoverage2;
+    Cart pathCoverage3;
+    Cart pathCoverage4;
+    Cart pathCoverage5;
+    Cart pathCoverage6;
+    Cart pathCoverage7;
+    Cart pathCoverage8; 
 
-    private Class<Cart> classUnderTest;
 
-    @SuppressWarnings("unchecked")
-    public BlackBoxGiven(Object classUnderTest) {
-        this.classUnderTest = (Class<Cart>) classUnderTest;
-    }
+    Cart taxTestCA;
+    Cart taxTestCO;
+    Cart taxTestNY; 
 
-    // Define all classes to be tested
-    @Parameterized.Parameters
-    public static Collection<Object[]> cartClassUnderTest() {
-        Object[][] classes = {
-                {Cart0.class},
-                {Cart1.class},
-                {Cart2.class},
-                {Cart3.class},
-                {Cart4.class},
-                {Cart5.class}
-        };
-        return Arrays.asList(classes);
-    }
 
-    private Cart createCart(int age) throws Exception {
-        Constructor<Cart> constructor = classUnderTest.getConstructor(Integer.TYPE);
-        return constructor.newInstance(age);
-    }
+
+    /////////////////////////////////////////////////
+
+
 
     // A sample Cart
 
@@ -113,11 +97,11 @@ public class BlackBoxGiven {
 
     Cart mixedCartDiscType2;
     double mixedCartDiscType2Expected;
- 
+   
 
     Cart mixedCartDiscTwoTypes;
     double mixedCartTwoTypesExpected;
-    
+ 
 
 
     ///////////////////////////////////
@@ -150,7 +134,7 @@ public class BlackBoxGiven {
   
 
     Cart edgeCaseAge22;
-    double edgeCaseAge22Expected; 
+    
 
     Cart edgeCaseProduce1;
     double edgeCaseProduce1Expected;
@@ -160,9 +144,6 @@ public class BlackBoxGiven {
 
     Cart edgeCaseAlcFroz1;
     double edgeCaseAlcFroz1Expected;
-
-  
-   
 
     Cart edgeCaseNoAlc1;
     double edgeCaseNoAlc1Expected;
@@ -174,15 +155,162 @@ public class BlackBoxGiven {
     double edgeCaseNoAlc3Expected; 
 
 
+    private Cart createCart(int age) throws Exception {
+        return new Cart(age); 
+    }
 
 
-
-
-
-
-
-    @org.junit.Before
+    @Before
     public void setUp() throws Exception {
+
+        //Cart must have several items including more than 3 produce 
+        //and multiple alcohol and frozen food items.
+        nodeCoverage1 = new Cart(30);
+
+        for(int i = 0; i < 2; i++) {
+            nodeCoverage1.addItem(new Dairy());
+        }
+        for(int i = 0; i < 4; i++) {
+            nodeCoverage1.addItem(new Produce());
+        }
+        for(int i = 0; i< 3; i++) {
+            nodeCoverage1.addItem(new Alcohol());
+        }
+        for(int i = 0; i< 3; i++) {
+            nodeCoverage1.addItem(new FrozenFood());
+        }
+
+        //same as node coverage 1 but under age
+
+        nodeCoverage2 = new Cart(15); 
+
+        for(int i = 0; i < 2; i++) {
+            nodeCoverage2.addItem(new Dairy());
+        }
+        for(int i = 0; i < 4; i++) {
+            nodeCoverage2.addItem(new Produce());
+        }
+        for(int i = 0; i< 3; i++) {
+            nodeCoverage2.addItem(new Alcohol());
+        }
+        for(int i = 0; i< 3; i++) {
+            nodeCoverage2.addItem(new FrozenFood());
+        }
+
+        //mult items in the cart no alc, no frozen, no produce 
+
+        pathCoverage1 = new Cart(30);
+
+        for(int i = 0; i < 2; i++) {
+            pathCoverage1.addItem(new Dairy());
+        }
+        for(int i = 0; i < 4; i++) {
+            pathCoverage1.addItem(new Meat());
+        }
+
+        //mult items in cart, 1 produce, no alc no frozen food
+        pathCoverage2 = new Cart(30);
+        pathCoverage2.addItem(new Produce());
+
+        for(int i = 0; i < 2; i++) {
+            pathCoverage2.addItem(new Dairy());
+        }
+        for(int i = 0; i < 4; i++) {
+            pathCoverage2.addItem(new Meat());
+        }
+
+        //Multiple items 6 produce, no alcohol, no frozen food
+
+        pathCoverage3 = new Cart(30);
+
+        for(int i = 0; i < 2; i++) {
+            pathCoverage3.addItem(new Dairy());
+        }
+        for(int i = 0; i < 4; i++) {
+            pathCoverage3.addItem(new Meat());
+        }
+
+        for(int i = 0; i < 6; i++) {
+            pathCoverage3.addItem(new Produce());
+        }
+
+        //Multiple items no produce, 2 alcohol, no frozen food
+
+        pathCoverage4 = new Cart(30);
+        for(int i = 0; i< 2;i++) {
+            pathCoverage4.addItem(new Alcohol());
+        }
+        for(int i = 0; i < 2; i++) {
+            pathCoverage4.addItem(new Dairy());
+        }
+        for(int i = 0; i < 4; i++) {
+            pathCoverage4.addItem(new Meat());
+        }
+
+        //Multiple items no produce 2 alcohol, no frozen food under age
+        pathCoverage5 = new Cart(15);
+        for(int i = 0; i< 2;i++) {
+            pathCoverage5.addItem(new Alcohol());
+        }
+        for(int i = 0; i < 2; i++) {
+            pathCoverage5.addItem(new Dairy());
+        }
+        for(int i = 0; i < 4; i++) {
+            pathCoverage5.addItem(new Meat());
+        }
+
+        //Multiple items no produce, no alcohol, 2 frozen food.
+
+        pathCoverage6 = new Cart(30);
+
+        for(int i = 0; i< 2;i++) {
+            pathCoverage6.addItem(new FrozenFood());
+        }
+        for(int i = 0; i < 2; i++) {
+            pathCoverage6.addItem(new Dairy());
+        }
+        for(int i = 0; i < 4; i++) {
+            pathCoverage6.addItem(new Meat());
+        }
+
+        //Multiple items no produce , 2 alchohol, 2 frozen food. 
+        pathCoverage7 = new Cart(30);
+
+        for(int i = 0; i< 2;i++) {
+            pathCoverage7.addItem(new FrozenFood());
+        }
+        for(int i = 0; i < 2; i++) {
+            pathCoverage7.addItem(new Dairy());
+        }
+        for(int i = 0; i < 4; i++) {
+            pathCoverage7.addItem(new Meat());
+        }
+        for(int i = 0; i< 2;i++) {
+            pathCoverage7.addItem(new Alcohol());
+        }
+
+        //mult items under age no alcohol
+        pathCoverage8 = new Cart(15);
+
+        for(int i = 0; i < 2; i++) {
+            pathCoverage8.addItem(new Dairy());
+        }
+        for(int i = 0; i < 4; i++) {
+            pathCoverage8.addItem(new Produce());
+        }
+
+        for(int i = 0; i< 3; i++) {
+            pathCoverage8.addItem(new FrozenFood());
+        }
+
+
+        //Testing getTax
+        taxTestCA = new Cart(30);
+        taxTestNY = new Cart(30);
+        taxTestCO = new Cart(30);
+
+
+        ////////////////////////////////////////////////////////////
 
         // all carts should be set up like this
 
@@ -372,7 +500,7 @@ public class BlackBoxGiven {
         }
 
         mixedCartDiscType1Expected = 19.44; 
-        
+       
 
         mixedCartDiscType2 = createCart(21);
         for (int i = 0; i< 1; i++) {
@@ -500,7 +628,7 @@ public class BlackBoxGiven {
         for(int i = 0; i < 4; i++) {
             edgeCaseAge22.addItem(new Meat());
         }
-        edgeCaseAge22Expected = 70.2; 
+       
 
         //edgeCasesProduce
 
@@ -604,12 +732,136 @@ public class BlackBoxGiven {
 
 
 
+    }
 
 
+    //Cart must have several items including more than 3 produce 
+    //and multiple alcohol and frozen food items.
+    @Test
+    public void asNodeCoverage1() throws UnderAgeException {
+        double saved = nodeCoverage1.amountSaved();
+        double expected = 10;
+        assertEquals(expected,saved, .01 ); 
+    }
+
+    //same as node coverage 1 but underAge
+    @Test(expected = UnderAgeException.class) 
+    public void asNodeCoverage2() throws UnderAgeException {
+       nodeCoverage2.amountSaved();
+    }
+
+    //mult items in the cart no alc, no frozen, no produce
+
+    @Test
+    public void testpathCoverage1() throws UnderAgeException {
+        double saved = pathCoverage1.amountSaved();
+        double expected = 0;
+        assertEquals(expected, saved, .01);
+    }
 
 
+    //mult items in cart, 1 produce, no alc no frozen food
+    @Test
+    public void testPathCoverage2() throws UnderAgeException {
+        double saved = pathCoverage2.amountSaved();
+        double expected = 0;
+        assertEquals(expected, saved, .01);
+    }
+
+    //Multiple items 6 produce, no alcohol, no frozen food
+
+    @Test
+    public void testPathCoverage3() throws UnderAgeException {
+        double saved = pathCoverage3.amountSaved();
+        double expected = 2;
+        assertEquals(expected, saved, .01);
+    }
+
+    //Multiple items no produce, 2 alcohol, no frozen food
+
+    @Test
+    public void teatPathCoverage4() throws UnderAgeException {
+        double saved = pathCoverage4.amountSaved();
+        double expected = 0;
+        assertEquals(expected, saved, .01); 
+    }
+
+
+    //Multiple items no produce 2 alcohol, no frozen food under age
+    @Test(expected = UnderAgeException.class)
+    public void teatPathCoverage5() throws UnderAgeException {
+        pathCoverage5.amountSaved(); 
+    }
+
+    //Multiple items no produce, no alcohol, 2 frozen food.
+    @Test
+    public void teatPathCoverage6() throws UnderAgeException {
+        double saved = pathCoverage6.amountSaved();
+        double expected = 0;
+        assertEquals(expected, saved, .01); 
+    }
+
+    //Multiple items no produce , 2 alcohol, 2 frozen food. 
+    @Test
+    public void teatPathCoverage7() throws UnderAgeException {
+        double saved = pathCoverage7.amountSaved();
+        double expected = 6;
+        assertEquals(expected, saved, .01); 
+    }
+
+    //under age no alcohol
+    @Test
+    public void testPathCoverage8() throws UnderAgeException {
+        double saved = pathCoverage8.amountSaved();
+        double expected = 1;
+        assertEquals(expected,saved, .01);
+    }
+
+
+    ///////Testing getTax
+
+    @Test
+    public void thetaxTestCa(){
+        double tax = taxTestCA.getTax(10, "CA");
+        double expected = .9; 
+        assertEquals(expected, tax, .01); 
+    }
+
+    @Test
+    public void thetaxTestCO(){
+        double tax = taxTestCO.getTax(10, "CO");
+        double expected = .7; 
+        assertEquals(expected, tax, .01); 
+    }
+
+    @Test
+    public void thetaxTestNY(){
+        double tax = taxTestNY.getTax(10, "NY");
+        double expected = 1.0; 
+        assertEquals(expected, tax, .01); 
+    }
+
+    @Test
+    public void theTaxTest() {
+        double tax = taxTestNY.getTax(10, "");
+        double expected = 10; 
+        assertEquals(expected, tax, .01); 
 
     }
+
+
+    //Testing remove produce
+
+    @Test
+    public void testRemove() throws UnderAgeException {
+        Cart removeCart = new Cart(30); 
+        removeCart.addItem(new Dairy());
+        removeCart.removeItem(new Dairy()); 
+        double cost = removeCart.calcCost();
+        assertEquals(0,cost,.01); 
+    }
+
+    ////////////////////////////////////////////////////////////////////
 
     // sample test
     @Test
@@ -793,7 +1045,7 @@ public class BlackBoxGiven {
 
     @Test(expected = UnderAgeException.class)
     public void underAgeAlcohol5() throws UnderAgeException{
-       cartAlcohol5UnderAge.calcCost(); 
+        cartAlcohol5UnderAge.calcCost(); 
     }
 
     @Test(expected = UnderAgeException.class)
@@ -862,11 +1114,6 @@ public class BlackBoxGiven {
         edgeCaseAge20.calcCost(); 
     }
 
-    @Test
-    public void testedgeCaseAge22() throws UnderAgeException {
-        double amount = edgeCaseAge22.calcCost(); 
-        assertEquals(edgeCaseAge22Expected, amount, .01); 
-    }
 
     @Test
     public void testedgeCaseProduce1() throws UnderAgeException {
@@ -903,8 +1150,6 @@ public class BlackBoxGiven {
         double amount = edgeCaseNoAlc3.calcCost();
         assertEquals(edgeCaseNoAlc3Expected, amount, 0.01); 
     }
-
-
 
 
 

@@ -7,6 +7,7 @@ apply plugin: 'application'
 apply plugin: 'jacoco'
 
 
+
 mainClassName = 'main.java.Main'
 
 
@@ -19,6 +20,7 @@ repositories {
 dependencies {
     compile "junit:junit:4.12"
     compile files('cls/')
+
 }
 
 test {
@@ -44,14 +46,36 @@ test {
  checkstyle {
      toolVersion = "8.8"
  }
+///////////////////////////////////////////////////////////////////////
+// Configure Checkstyle
+/////////////////////////////////////////////////////////////////////
+ apply plugin: 'checkstyle'
+ checkstyle {
+   // Keep checkstyle a little quieter
+   ignoreFailures = true
+   showViolations = false
+ }
+
+ tasks.withType(Checkstyle) {
+   reports {
+     html.enabled = true
+     xml.enabled = false
+   }
+ }
+ checkstyle {
+     toolVersion = "8.8"
+ }
+
 
 
 /////////////////////////////////////////////////////////////////////////
 // Configure SpotBugs
 /////////////////////////////////////////////////////////////////////////
+ To generate an HTML report instead of XML
  tasks.withType(com.github.spotbugs.SpotBugsTask) {
    reports {
      xml.enabled = false
      html.enabled = true
    }
  }
+

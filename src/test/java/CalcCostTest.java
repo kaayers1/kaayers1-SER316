@@ -1,52 +1,23 @@
 package test.java;
 
-//Making changes to test travis ci
+import static org.junit.Assert.assertEquals;
 
-import main.java.*;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
-import java.lang.reflect.Constructor;
-import java.util.Arrays;
-import java.util.Collection;
-
+import main.java.Alcohol;
 import main.java.Cart;
-import main.java.Cart1;
-import main.java.Cart2;
-import main.java.Cart3;
-import main.java.Cart4;
-import main.java.Cart5;
+import main.java.Dairy;
+import main.java.FrozenFood;
+import main.java.Meat;
+import main.java.Produce;
+import main.java.UnderAgeException;
 
-import static org.junit.Assert.*;
+public class CalcCostTest {
 
-@RunWith(Parameterized.class)
-public class BlackBoxGiven {
 
-    private Class<Cart> classUnderTest;
-
-    @SuppressWarnings("unchecked")
-    public BlackBoxGiven(Object classUnderTest) {
-        this.classUnderTest = (Class<Cart>) classUnderTest;
-    }
-
-    // Define all classes to be tested
-    @Parameterized.Parameters
-    public static Collection<Object[]> cartClassUnderTest() {
-        Object[][] classes = {
-                {Cart0.class},
-                {Cart1.class},
-                {Cart2.class},
-                {Cart3.class},
-                {Cart4.class},
-                {Cart5.class}
-        };
-        return Arrays.asList(classes);
-    }
 
     private Cart createCart(int age) throws Exception {
-        Constructor<Cart> constructor = classUnderTest.getConstructor(Integer.TYPE);
-        return constructor.newInstance(age);
+        return new Cart(age); 
     }
 
     // A sample Cart
@@ -109,11 +80,11 @@ public class BlackBoxGiven {
 
     Cart mixedCartDiscType1;
     double mixedCartDiscType1Expected;
-    
+ 
 
     Cart mixedCartDiscType2;
     double mixedCartDiscType2Expected;
- 
+    
 
     Cart mixedCartDiscTwoTypes;
     double mixedCartTwoTypesExpected;
@@ -147,7 +118,7 @@ public class BlackBoxGiven {
 
     //edger cases
     Cart edgeCaseAge20;
-  
+   
 
     Cart edgeCaseAge22;
     double edgeCaseAge22Expected; 
@@ -161,8 +132,6 @@ public class BlackBoxGiven {
     Cart edgeCaseAlcFroz1;
     double edgeCaseAlcFroz1Expected;
 
-  
-   
 
     Cart edgeCaseNoAlc1;
     double edgeCaseNoAlc1Expected;
@@ -372,7 +341,7 @@ public class BlackBoxGiven {
         }
 
         mixedCartDiscType1Expected = 19.44; 
-        
+       
 
         mixedCartDiscType2 = createCart(21);
         for (int i = 0; i< 1; i++) {
@@ -384,7 +353,7 @@ public class BlackBoxGiven {
         }
 
         mixedCartDiscType2Expected = 24.84; 
-       
+        
 
         mixedCartDiscTwoTypes = createCart(21);
         for (int i = 0; i<1; i++) {
@@ -398,7 +367,7 @@ public class BlackBoxGiven {
 
         }
         mixedCartTwoTypesExpected = 30.24; 
-        
+         
 
 
 
@@ -793,12 +762,12 @@ public class BlackBoxGiven {
 
     @Test(expected = UnderAgeException.class)
     public void underAgeAlcohol5() throws UnderAgeException{
-       cartAlcohol5UnderAge.calcCost(); 
+        cartAlcohol5UnderAge.calcCost(); 
     }
 
     @Test(expected = UnderAgeException.class)
     public void underAgeAlcohol10() throws UnderAgeException{
-       cartAlcohol10UnderAge.calcCost(); 
+        cartAlcohol10UnderAge.calcCost(); 
     }
 
     @Test(expected = UnderAgeException.class)
@@ -903,19 +872,6 @@ public class BlackBoxGiven {
         double amount = edgeCaseNoAlc3.calcCost();
         assertEquals(edgeCaseNoAlc3Expected, amount, 0.01); 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

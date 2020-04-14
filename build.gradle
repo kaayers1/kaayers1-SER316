@@ -1,10 +1,11 @@
-// plugins {
-//     id "com.github.spotbugs" version "3.0.0"
-//     id "checkstyle"
-// }
+plugins {
+    id "com.github.spotbugs" version "4.0.1"
+    id "checkstyle"
+}
 
 apply plugin: 'application'
 apply plugin: 'jacoco'
+
 
 
 mainClassName = 'main.java.Main'
@@ -19,8 +20,6 @@ repositories {
 dependencies {
     compile "junit:junit:4.12"
     compile files('cls/')
-
-    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
 
 }
 
@@ -56,12 +55,6 @@ spotbugs {
   toolVersion = '4.0.1'
 }
 
-sourceSets {
-  // we define `main` sourceSet here, so SpotBugs Gradle Plugin generates `spotbugsMain` task
-  main {
-    java.srcDirs = ['src/main/java']
-  }
-}
 
  tasks.withType(com.github.spotbugs.SpotBugsTask) {
    reports {

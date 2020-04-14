@@ -19,12 +19,12 @@ Description: State object to represent New York contains tax rate attribute
 public class NewYork extends State {
 
     /**
-	Method: NewYork
-	Inputs: None
-	Returns: None
+Method: NewYork
+Inputs: None
+Returns: None
 
-	Description: Constructor
-     */
+Description: Constructor
+ */
 
     public NewYork() {
         super(.1);

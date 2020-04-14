@@ -112,7 +112,7 @@ public class Cart {
 
 
         produceDiscount = produceCount / 3; 
-        if(frozenCount != 0 && alcoholCount != 0) { 
+        if (frozenCount != 0 && alcoholCount != 0) { 
             comboDiscount = ((alcoholCount + frozenCount) / 2) * 3; 
         }
 
@@ -128,23 +128,23 @@ public class Cart {
 
     /**
      * 
-     * @param totalBt
-     * @param twoLetterStateAbbreviation
+     * @param totalBt total price before tax 
+     * @param twoLetterStateAbbreviation State abrev
      * @return Amount of tax for chosen state
      */
     public double getTax(double totalBt, String twoLetterStateAbbreviation) {
         double newTotal = 0;
         switch (twoLetterStateAbbreviation) {
-        case "AZ":
+          case "AZ":
             newTotal = totalBt * .08;
             break;
-        case "CA":
+          case "CA":
             newTotal = totalBt * .09;
             break;
-        case "NY":
+          case "NY":
             newTotal = totalBt * .1;
             break;
-        case "CO":
+          case "CO":
             newTotal = totalBt * .07;
             break;
         default:

@@ -93,15 +93,15 @@ public class CartTest {
 
     Cart mixedCartDiscType1;
     double mixedCartDiscType1Expected;
-    
+
 
     Cart mixedCartDiscType2;
     double mixedCartDiscType2Expected;
-   
+
 
     Cart mixedCartDiscTwoTypes;
     double mixedCartTwoTypesExpected;
- 
+
 
 
     ///////////////////////////////////
@@ -131,10 +131,10 @@ public class CartTest {
 
     //edger cases
     Cart edgeCaseAge20;
-  
+
 
     Cart edgeCaseAge22;
-    
+
 
     Cart edgeCaseProduce1;
     double edgeCaseProduce1Expected;
@@ -500,7 +500,7 @@ public class CartTest {
         }
 
         mixedCartDiscType1Expected = 19.44; 
-       
+
 
         mixedCartDiscType2 = createCart(21);
         for (int i = 0; i< 1; i++) {
@@ -512,7 +512,7 @@ public class CartTest {
         }
 
         mixedCartDiscType2Expected = 24.84; 
-       
+
 
         mixedCartDiscTwoTypes = createCart(21);
         for (int i = 0; i<1; i++) {
@@ -526,7 +526,7 @@ public class CartTest {
 
         }
         mixedCartTwoTypesExpected = 30.24; 
-        
+
 
 
 
@@ -628,7 +628,7 @@ public class CartTest {
         for(int i = 0; i < 4; i++) {
             edgeCaseAge22.addItem(new Meat());
         }
-       
+
 
         //edgeCasesProduce
 
@@ -747,7 +747,7 @@ public class CartTest {
     //same as node coverage 1 but underAge
     @Test(expected = UnderAgeException.class) 
     public void asNodeCoverage2() throws UnderAgeException {
-       nodeCoverage2.amountSaved();
+        nodeCoverage2.amountSaved();
     }
 
     //mult items in the cart no alc, no frozen, no produce
@@ -1050,7 +1050,7 @@ public class CartTest {
 
     @Test(expected = UnderAgeException.class)
     public void underAgeAlcohol10() throws UnderAgeException{
-       cartAlcohol10UnderAge.calcCost(); 
+        cartAlcohol10UnderAge.calcCost(); 
     }
 
     @Test(expected = UnderAgeException.class)

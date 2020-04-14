@@ -109,15 +109,15 @@ public class BlackBoxGiven {
 
     Cart mixedCartDiscType1;
     double mixedCartDiscType1Expected;
-    
+
 
     Cart mixedCartDiscType2;
     double mixedCartDiscType2Expected;
- 
+
 
     Cart mixedCartDiscTwoTypes;
     double mixedCartTwoTypesExpected;
-    
+
 
 
     ///////////////////////////////////
@@ -147,7 +147,7 @@ public class BlackBoxGiven {
 
     //edger cases
     Cart edgeCaseAge20;
-  
+
 
     Cart edgeCaseAge22;
     double edgeCaseAge22Expected; 
@@ -161,8 +161,8 @@ public class BlackBoxGiven {
     Cart edgeCaseAlcFroz1;
     double edgeCaseAlcFroz1Expected;
 
-  
-   
+
+
 
     Cart edgeCaseNoAlc1;
     double edgeCaseNoAlc1Expected;
@@ -372,7 +372,7 @@ public class BlackBoxGiven {
         }
 
         mixedCartDiscType1Expected = 19.44; 
-        
+
 
         mixedCartDiscType2 = createCart(21);
         for (int i = 0; i< 1; i++) {
@@ -384,7 +384,7 @@ public class BlackBoxGiven {
         }
 
         mixedCartDiscType2Expected = 24.84; 
-       
+
 
         mixedCartDiscTwoTypes = createCart(21);
         for (int i = 0; i<1; i++) {
@@ -398,7 +398,7 @@ public class BlackBoxGiven {
 
         }
         mixedCartTwoTypesExpected = 30.24; 
-        
+
 
 
 
@@ -793,12 +793,12 @@ public class BlackBoxGiven {
 
     @Test(expected = UnderAgeException.class)
     public void underAgeAlcohol5() throws UnderAgeException{
-       cartAlcohol5UnderAge.calcCost(); 
+        cartAlcohol5UnderAge.calcCost(); 
     }
 
     @Test(expected = UnderAgeException.class)
     public void underAgeAlcohol10() throws UnderAgeException{
-       cartAlcohol10UnderAge.calcCost(); 
+        cartAlcohol10UnderAge.calcCost(); 
     }
 
     @Test(expected = UnderAgeException.class)

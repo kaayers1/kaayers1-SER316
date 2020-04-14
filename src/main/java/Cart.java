@@ -9,7 +9,7 @@ public class Cart {
     protected int userAge;
     public List<Product> cart;
     //SER316 TASK 2 SPOT-BUGS FIX
-  
+
 
     /**
      * Calculates the final cost after all savings and tax has been applied. Also
@@ -30,7 +30,7 @@ public class Cart {
      */
     public double calcCost() throws UnderAgeException {
         int subTotal = 0;
-      
+
 
         int produceCount = 0;
         int produceDiscount;
@@ -66,9 +66,9 @@ public class Cart {
 
 
         subTotal = subTotal - produceDiscount; 
-        
+
         subTotal = subTotal - comboDiscount;
-        
+
         double tax = subTotal * .08;
 
         double total = subTotal + tax;
@@ -76,18 +76,18 @@ public class Cart {
 
         return total;
     }
-    
 
 
-    
-    
+
+
+
     /**
     Method: None
     Inputs: None
     Returns: int
     Description: Throws underAgeException when someone under the age 
-    * of 21 attempts to purchase alcohol. 
-    */
+     * of 21 attempts to purchase alcohol. 
+     */
     public int amountSaved() throws UnderAgeException {
         int produceCount = 0;
         int alcoholCount = 0;
@@ -125,7 +125,7 @@ public class Cart {
         return (produceDiscount + comboDiscount);
     }
 
-  
+
     /**
      * 
      * @param totalBt
@@ -136,19 +136,19 @@ public class Cart {
         double newTotal = 0;
         switch (twoLetterStateAbbreviation) {
         case "AZ":
-              newTotal = totalBt * .08;
-              break;
+            newTotal = totalBt * .08;
+            break;
         case "CA":
-              newTotal = totalBt * .09;
-              break;
+            newTotal = totalBt * .09;
+            break;
         case "NY":
-              newTotal = totalBt * .1;
-              break;
+            newTotal = totalBt * .1;
+            break;
         case "CO":
-              newTotal = totalBt * .07;
-              break;
+            newTotal = totalBt * .07;
+            break;
         default:
-              return totalBt;
+            return totalBt;
         }
         return newTotal;
     }
@@ -156,7 +156,7 @@ public class Cart {
     public void addItem(Product np) {
         cart.add(np);
     }
-        
+
     //SER316 TASK 2 SPOT-BUGS FIX
     //changed to .getClass to make it function correctly 
     public boolean removeItem(Product productToRemove) {

@@ -80,15 +80,15 @@ public class CalcCostTest {
 
     Cart mixedCartDiscType1;
     double mixedCartDiscType1Expected;
- 
+
 
     Cart mixedCartDiscType2;
     double mixedCartDiscType2Expected;
-    
+
 
     Cart mixedCartDiscTwoTypes;
     double mixedCartTwoTypesExpected;
-    
+
 
 
     ///////////////////////////////////
@@ -118,7 +118,7 @@ public class CalcCostTest {
 
     //edger cases
     Cart edgeCaseAge20;
-   
+
 
     Cart edgeCaseAge22;
     double edgeCaseAge22Expected; 
@@ -341,7 +341,7 @@ public class CalcCostTest {
         }
 
         mixedCartDiscType1Expected = 19.44; 
-       
+
 
         mixedCartDiscType2 = createCart(21);
         for (int i = 0; i< 1; i++) {
@@ -353,7 +353,7 @@ public class CalcCostTest {
         }
 
         mixedCartDiscType2Expected = 24.84; 
-        
+
 
         mixedCartDiscTwoTypes = createCart(21);
         for (int i = 0; i<1; i++) {
@@ -367,7 +367,7 @@ public class CalcCostTest {
 
         }
         mixedCartTwoTypesExpected = 30.24; 
-         
+
 
 
 

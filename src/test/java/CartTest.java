@@ -742,7 +742,7 @@ public class CartTest {
     //and multiple alcohol and frozen food items.
     @Test
     public void asNodeCoverage1() throws UnderAgeException {
-        double saved = nodeCoverage1.Amount_saved();
+        double saved = nodeCoverage1.amountSaved();
         double expected = 10;
         assertEquals(expected,saved, .01 ); 
     }
@@ -750,14 +750,14 @@ public class CartTest {
     //same as node coverage 1 but underAge
     @Test(expected = UnderAgeException.class) 
     public void asNodeCoverage2() throws UnderAgeException {
-        double buffer = nodeCoverage2.Amount_saved();
+        double buffer = nodeCoverage2.amountSaved();
     }
 
     //mult items in the cart no alc, no frozen, no produce
 
     @Test
     public void testpathCoverage1() throws UnderAgeException {
-        double saved = pathCoverage1.Amount_saved();
+        double saved = pathCoverage1.amountSaved();
         double expected = 0;
         assertEquals(expected, saved, .01);
     }
@@ -766,7 +766,7 @@ public class CartTest {
     //mult items in cart, 1 produce, no alc no frozen food
     @Test
     public void testPathCoverage2() throws UnderAgeException {
-        double saved = pathCoverage2.Amount_saved();
+        double saved = pathCoverage2.amountSaved();
         double expected = 0;
         assertEquals(expected, saved, .01);
     }
@@ -775,7 +775,7 @@ public class CartTest {
 
     @Test
     public void testPathCoverage3() throws UnderAgeException {
-        double saved = pathCoverage3.Amount_saved();
+        double saved = pathCoverage3.amountSaved();
         double expected = 2;
         assertEquals(expected, saved, .01);
     }
@@ -784,7 +784,7 @@ public class CartTest {
 
     @Test
     public void teatPathCoverage4() throws UnderAgeException {
-        double saved = pathCoverage4.Amount_saved();
+        double saved = pathCoverage4.amountSaved();
         double expected = 0;
         assertEquals(expected, saved, .01); 
     }
@@ -793,13 +793,13 @@ public class CartTest {
     //Multiple items no produce 2 alcohol, no frozen food under age
     @Test(expected = UnderAgeException.class)
     public void teatPathCoverage5() throws UnderAgeException {
-        double saved = pathCoverage5.Amount_saved(); 
+        double saved = pathCoverage5.amountSaved(); 
     }
 
     //Multiple items no produce, no alcohol, 2 frozen food.
     @Test
     public void teatPathCoverage6() throws UnderAgeException {
-        double saved = pathCoverage6.Amount_saved();
+        double saved = pathCoverage6.amountSaved();
         double expected = 0;
         assertEquals(expected, saved, .01); 
     }
@@ -807,7 +807,7 @@ public class CartTest {
     //Multiple items no produce , 2 alcohol, 2 frozen food. 
     @Test
     public void teatPathCoverage7() throws UnderAgeException {
-        double saved = pathCoverage7.Amount_saved();
+        double saved = pathCoverage7.amountSaved();
         double expected = 6;
         assertEquals(expected, saved, .01); 
     }
@@ -815,7 +815,7 @@ public class CartTest {
     //under age no alcohol
     @Test
     public void testPathCoverage8() throws UnderAgeException {
-        double saved = pathCoverage8.Amount_saved();
+        double saved = pathCoverage8.amountSaved();
         double expected = 1;
         assertEquals(expected,saved, .01);
     }

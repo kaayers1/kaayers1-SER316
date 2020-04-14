@@ -24,7 +24,7 @@ public class Cart {
      * UnderAgeException should be thrown.
      *
      * @return double totalCost
-     * @throws UnderAgeException, occurs when someone under the age of 21 attempts to buy alcohol 
+     * @throws UnderAgeException occurs when someone under the age of 21 attempts to buy alcohol 
      */
     public double calcCost() throws UnderAgeException {
         int subTotal = 0;
@@ -86,7 +86,7 @@ public class Cart {
     Description: Throws underAgeException when someone under the age 
     * of 21 attempts to purchase alcohol. 
     */
-    public int Amount_saved() throws UnderAgeException {
+    public int amountSaved() throws UnderAgeException {
         int produceCount = 0;
         int alcoholCount = 0;
         int frozenCount = 0;
@@ -104,14 +104,14 @@ public class Cart {
             }
         }
 
-        if(userAge < 21 && alcoholCount > 0) {
+        if (userAge < 21 && alcoholCount > 0) {
             throw new UnderAgeException("This buyer is under age!");
         }
 
 
-        produceDiscount = produceCount/3; 
+        produceDiscount = produceCount / 3; 
         if(frozenCount != 0 && alcoholCount != 0) { 
-            comboDiscount = ((alcoholCount+frozenCount)/2) * 3; 
+            comboDiscount = ((alcoholCount + frozenCount) / 2) * 3; 
         }
 
 
@@ -123,25 +123,30 @@ public class Cart {
         return (produceDiscount + comboDiscount);
     }
 
-    //Added break statement to fix gettax 
-    // Gets the tax based on state and the total
-    public double getTax(double totalBT, String twoLetterUSStateAbbreviation) {
+  
+    /**
+     * 
+     * @param totalBt
+     * @param twoLetterStateAbbreviation
+     * @return Amount of tax for chosen state
+     */
+    public double getTax(double totalBt, String twoLetterStateAbbreviation) {
         double newTotal = 0;
-        switch (twoLetterUSStateAbbreviation) {
+        switch (twoLetterStateAbbreviation) {
         case "AZ":
-            newTotal = totalBT * .08;
-            break;
+              newTotal = totalBt * .08;
+              break;
         case "CA":
-            newTotal = totalBT * .09;
-            break;
+              newTotal = totalBt * .09;
+              break;
         case "NY":
-            newTotal = totalBT * .1;
-            break;
+              newTotal = totalBt * .1;
+              break;
         case "CO":
-            newTotal = totalBT * .07;
-            break;
+              newTotal = totalBt * .07;
+              break;
         default:
-            return totalBT;
+              return totalBt;
         }
         return newTotal;
     }

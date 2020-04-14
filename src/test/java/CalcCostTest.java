@@ -12,7 +12,7 @@ import main.java.Meat;
 import main.java.Produce;
 import main.java.UnderAgeException;
 
-public class calcCostTest {
+public class CalcCostTest {
 
 
 
@@ -80,15 +80,15 @@ public class calcCostTest {
 
     Cart mixedCartDiscType1;
     double mixedCartDiscType1Expected;
-    double amountSavedCartDiscType1Expected;
+ 
 
     Cart mixedCartDiscType2;
     double mixedCartDiscType2Expected;
-    double amountSavedCartDiscType2Expected;
+    
 
     Cart mixedCartDiscTwoTypes;
     double mixedCartTwoTypesExpected;
-    double amountSavedCartDiscTwoTypesExpected; 
+    
 
 
     ///////////////////////////////////
@@ -118,7 +118,7 @@ public class calcCostTest {
 
     //edger cases
     Cart edgeCaseAge20;
-    double edgeCaseAge20Expected;
+   
 
     Cart edgeCaseAge22;
     double edgeCaseAge22Expected; 
@@ -132,8 +132,6 @@ public class calcCostTest {
     Cart edgeCaseAlcFroz1;
     double edgeCaseAlcFroz1Expected;
 
-    Cart edgeCaseAlcFroz2;
-    double edgeCaseAlcFroz2Expected;
 
     Cart edgeCaseNoAlc1;
     double edgeCaseNoAlc1Expected;
@@ -343,7 +341,7 @@ public class calcCostTest {
         }
 
         mixedCartDiscType1Expected = 19.44; 
-        amountSavedCartDiscType1Expected = 1.08;
+       
 
         mixedCartDiscType2 = createCart(21);
         for (int i = 0; i< 1; i++) {
@@ -355,7 +353,7 @@ public class calcCostTest {
         }
 
         mixedCartDiscType2Expected = 24.84; 
-        amountSavedCartDiscType2Expected = 3.24;
+        
 
         mixedCartDiscTwoTypes = createCart(21);
         for (int i = 0; i<1; i++) {
@@ -369,7 +367,7 @@ public class calcCostTest {
 
         }
         mixedCartTwoTypesExpected = 30.24; 
-        amountSavedCartDiscTwoTypesExpected = 4.32; 
+         
 
 
 
@@ -759,22 +757,22 @@ public class calcCostTest {
 
     @Test(expected = UnderAgeException.class)
     public void underAgeAlcohol1() throws UnderAgeException{
-        double buffer = cartAlcohol1UnderAge.calcCost(); 
+        cartAlcohol1UnderAge.calcCost(); 
     }
 
     @Test(expected = UnderAgeException.class)
     public void underAgeAlcohol5() throws UnderAgeException{
-        double buffer = cartAlcohol5UnderAge.calcCost(); 
+        cartAlcohol5UnderAge.calcCost(); 
     }
 
     @Test(expected = UnderAgeException.class)
     public void underAgeAlcohol10() throws UnderAgeException{
-        double buffer = cartAlcohol10UnderAge.calcCost(); 
+        cartAlcohol10UnderAge.calcCost(); 
     }
 
     @Test(expected = UnderAgeException.class)
     public void underAgeAlcohol100() throws UnderAgeException{
-        double buffer = cartAlcohol100UnderAge.calcCost(); 
+        cartAlcohol100UnderAge.calcCost(); 
     }
 
     ////////////////////////////////////////////////////////
@@ -830,7 +828,7 @@ public class calcCostTest {
 
     @Test(expected = UnderAgeException.class)
     public void testedgeCaseAge20() throws UnderAgeException{
-        double buffer = edgeCaseAge20.calcCost(); 
+        edgeCaseAge20.calcCost(); 
     }
 
     @Test

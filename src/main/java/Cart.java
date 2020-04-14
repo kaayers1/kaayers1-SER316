@@ -13,23 +13,22 @@ public class Cart {
      * Calculates the final cost after all savings and tax has been applied. Also
      * checks that the user is of age to purchase alcohol if it is in their cart at
      * checkout. Sales tax is always AZ tax.
-     *
-     * Calculation is based off of the following prices and deals: 
+     * 
+     * <p>Calculation is based off of the following prices and deals: 
      * Dairy -> $3 
      * Meat
      * -> $10 Produce -> $2 or 3 for $5 Alcohol -> $8 Frozen Food -> $5 Alcohol +
      * Frozen Food -> $10
      *
-     * If there is an alcohol product in the cart and the user is under 21, then an
+     * <p>If there is an alcohol product in the cart and the user is under 21, then an
      * UnderAgeException should be thrown.
      *
      * @return double totalCost
-     * @throws UnderAgeException
+     * @throws UnderAgeException, occurs when someone under the age of 21 attempts to buy alcohol 
      */
     public double calcCost() throws UnderAgeException {
         int subTotal = 0;
-        double total=0;
-        double tax =0;
+      
 
         int produceCount = 0;
         int produceDiscount;
@@ -54,33 +53,39 @@ public class Cart {
             }
         }
 
-        if(userAge < 21 && alcoholCount > 0) {
+        if (userAge < 21 && alcoholCount > 0) {
             throw new UnderAgeException("This buyer is under age!");
         }
 
-
-        produceDiscount = produceCount/3; 
-        if(frozenCount != 0 && alcoholCount != 0) { 
-            comboDiscount = ((alcoholCount+frozenCount)/2) * 3; 
+        produceDiscount = produceCount / 3; 
+        if (frozenCount != 0 && alcoholCount != 0) { 
+            comboDiscount = ((alcoholCount + frozenCount) / 2) * 3; 
         }
 
 
-        subTotal = subTotal - produceDiscount; subTotal = subTotal - comboDiscount;
-        tax = subTotal * .08;
+        subTotal = subTotal - produceDiscount; 
+        
+        subTotal = subTotal - comboDiscount;
+        
+        double tax = subTotal * .08;
 
-        total = subTotal + tax;
+        double total = subTotal + tax;
 
 
         return total;
     }
+    
 
-    // I over hauled this entire function the previous function was poorly written and difficult to read 
-    // calculates how much was saved in the current shopping cart based on the
-    // deals, returns the saved amount
-    // throws exception if alcohol is bought from under age person
-    // TODO: Create node graph for this method in assign 4: create white box tests
-    // and fix the method, reach at least 98% coverage
 
+    
+    
+    /**
+    Method: None
+    Inputs: None
+    Returns: int
+    Description: Throws underAgeException when someone under the age 
+    * of 21 attempts to purchase alcohol. 
+    */
     public int Amount_saved() throws UnderAgeException {
         int produceCount = 0;
         int alcoholCount = 0;

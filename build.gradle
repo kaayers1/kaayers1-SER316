@@ -21,13 +21,14 @@ dependencies {
     compile files('cls/')
 
     spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
+
 }
 
 test {
 	exclude '**/BlackBoxGiven.class'
 }
 
-
+ 
  apply plugin: 'checkstyle'
  checkstyle {
    // Keep checkstyle a little quieter
@@ -49,13 +50,10 @@ test {
 /////////////////////////////////////////////////////////////////////////
 // Configure SpotBugs
 /////////////////////////////////////////////////////////////////////////
-apply plugin: "com.github.spotbugs"
+
 
 spotbugs {
-  toolVersion = '3.1.3'
-  ignoreFailures = true
-  effort = 'max'
-  showProgress = true
+  toolVersion = '4.0.1'
 }
 
 sourceSets {

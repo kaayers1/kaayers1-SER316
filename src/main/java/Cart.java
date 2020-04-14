@@ -68,7 +68,7 @@ public class Cart {
                 dairyCounter++;
 
             if (alcoholCounter >= 1 && frozenFoodCounter >= 1) {
-                 costAfterSavings = costAfterSavings + 3;
+                 costAfterSavings = costAfterSavings - 3;
                  alcoholCounter--;
                  frozenFoodCounter--;
             }
@@ -77,26 +77,14 @@ public class Cart {
         return subTotal - costAfterSavings;
     }
 
-    // Gets the tax based on state and the total
-    public double getTax(double totalBT, String twoLetterUSStateAbbreviation) {
+    // Gets the tax based on state tax rate and the total
+    public double getTax(double totalBT,  double rate) {
         double newTotal = 0;
-        switch (twoLetterUSStateAbbreviation) {
-            case "AZ":
-                newTotal = totalBT * .08;
-                break;
-            case "CA":
-                newTotal = totalBT * .09;
-                break;
-            case "NY":
-                newTotal = totalBT * .1;
-            case "CO":
-                newTotal = totalBT * .07;
-                break;
-            default:
-                return totalBT;
-        }
+        newTotal = totalBT * rate;
+        
         return newTotal;
     }
+    
 
     public void addItem(Product np) {
       cart.add(np);

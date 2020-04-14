@@ -7,6 +7,7 @@ public class Cart {
 
     protected int userAge;
     public List<Product> cart;
+    //SER316 TASK 2 SPOT-BUGS FIX
   
 
     /**
@@ -154,7 +155,8 @@ public class Cart {
     public void addItem(Product np) {
         cart.add(np);
     }
-
+        
+    //SER316 TASK 2 SPOT-BUGS FIX
     //changed to .getClass to make it function correctly 
     public boolean removeItem(Product productToRemove) {
         boolean test = false;

@@ -859,7 +859,7 @@ public class CartTest {
     public void testRemove() throws UnderAgeException {
         Cart removeCart = new Cart(30); 
         removeCart.addItem(new Dairy());
-        removeCart.RemoveItem(new Dairy()); 
+        removeCart.removeItem(new Dairy()); 
         double cost = removeCart.calcCost();
         assertEquals(0,cost,.01); 
     }

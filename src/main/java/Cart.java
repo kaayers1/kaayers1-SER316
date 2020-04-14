@@ -156,7 +156,7 @@ public class Cart {
     }
 
     //changed to .getClass to make it function correctly 
-    public boolean RemoveItem(Product productToRemove) {
+    public boolean removeItem(Product productToRemove) {
         boolean test = false;
         for (int i = 0; i < cart.size(); i++) {
             if (cart.get(i).getClass() == productToRemove.getClass()) {

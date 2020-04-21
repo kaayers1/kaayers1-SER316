@@ -6,4 +6,7 @@ build/
 *.project
 *.metadata/
 *.metadata
+out/*
+.idea/
+
 

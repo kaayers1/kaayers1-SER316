@@ -31,13 +31,6 @@ public class Cart {
     public double calcCost() throws UnderAgeException {
         int subTotal = 0;
 
-
-        int produceCount = 0;
-        int produceDiscount;
-        int alcoholCount = 0;
-        int frozenCount = 0;
-        int comboDiscount = 0;
-
         for (int i = 0; i < cart.size(); i++) {
             if (cart.get(i).getClass() == Dairy.class) {
                 subTotal += 3;
@@ -45,34 +38,18 @@ public class Cart {
                 subTotal += 10;
             } else if (cart.get(i).getClass() == Produce.class) {
                 subTotal += 2;
-                produceCount++;
             } else if (cart.get(i).getClass() == Alcohol.class) {
                 subTotal += 8;
-                alcoholCount++;
             } else if (cart.get(i).getClass() == FrozenFood.class) {
                 subTotal += 5;
-                frozenCount++;
             }
         }
 
-        if (userAge < 21 && alcoholCount > 0) {
-            throw new UnderAgeException("This buyer is under age!");
-        }
-
-        produceDiscount = produceCount / 3; 
-        if (frozenCount != 0 && alcoholCount != 0) { 
-            comboDiscount = ((alcoholCount + frozenCount) / 2) * 3; 
-        }
-
-
-        subTotal = subTotal - produceDiscount; 
-
-        subTotal = subTotal - comboDiscount;
+        subTotal = subTotal - this.amountSaved();
 
         double tax = subTotal * .08;
 
         double total = subTotal + tax;
-
 
         return total;
     }
@@ -115,10 +92,6 @@ public class Cart {
         if (frozenCount != 0 && alcoholCount != 0) { 
             comboDiscount = ((alcoholCount + frozenCount) / 2) * 3; 
         }
-
-
-
-
 
 
 

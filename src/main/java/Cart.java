@@ -29,8 +29,20 @@ public class Cart {
      * @throws UnderAgeException occurs when someone under the age of 21 attempts to buy alcohol 
      */
     public double calcCost() throws UnderAgeException {
-        int subTotal = 0;
+        int beforeTax;
 
+        beforeTax = this.subTotal() - this.amountSaved();
+
+        double tax = beforeTax * .08;
+
+        double afterTax = beforeTax + tax;
+
+        return afterTax;
+    }
+    
+    
+    public int subTotal() {
+        int subTotal = 0;
         for (int i = 0; i < cart.size(); i++) {
             if (cart.get(i).getClass() == Dairy.class) {
                 subTotal += 3;
@@ -44,14 +56,8 @@ public class Cart {
                 subTotal += 5;
             }
         }
-
-        subTotal = subTotal - this.amountSaved();
-
-        double tax = subTotal * .08;
-
-        double total = subTotal + tax;
-
-        return total;
+        return subTotal; 
+        
     }
 
 
@@ -92,7 +98,6 @@ public class Cart {
         if (frozenCount != 0 && alcoholCount != 0) { 
             comboDiscount = ((alcoholCount + frozenCount) / 2) * 3; 
         }
-
 
 
         return (produceDiscount + comboDiscount);

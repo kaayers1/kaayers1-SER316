@@ -8,12 +8,21 @@ public class Cart {
 
     protected int userAge;
     public List<Product> cart;
+    public State state;
     private int dairyCount;
     private int meatCount;
     private int produceCount;
     private int alcoholCount;
     private int frozenCount;
     
+    public Cart(int age,State state) {
+        userAge = age;
+        this.state = state; 
+        cart = new ArrayList<Product>();
+    }
+
+    
+ 
     //SER316 TASK 2 SPOT-BUGS FIX
 
 
@@ -107,25 +116,12 @@ public class Cart {
      * @param twoLetterStateAbbreviation State abrev
      * @return Amount of tax for chosen state
      */
-    public double getTax(double totalBt, String twoLetterStateAbbreviation) {
-        double newTotal = 0;
-        switch (twoLetterStateAbbreviation) {
-          case "AZ":
-            newTotal = totalBt * .08;
-            break;
-          case "CA":
-            newTotal = totalBt * .09;
-            break;
-          case "NY":
-            newTotal = totalBt * .1;
-            break;
-          case "CO":
-            newTotal = totalBt * .07;
-            break;
-        default:
-            return totalBt;
-        }
-        return newTotal;
+
+    // Gets the tax based on state tax rate and the total
+    public double getTax(double totalBeforeTax) {
+        double result = 0;
+        result = totalBeforeTax * this.state.getRate();
+        return result;
     }
 
     public void addItem(Product np) {
@@ -146,10 +142,6 @@ public class Cart {
         return false;
     }
 
-    public Cart(int age) {
-        userAge = age;
-        cart = new ArrayList<Product>();
-    }
-
+  
 
 }

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import main.java.Alcohol;
+import main.java.Arizona;
 import main.java.Cart;
 import main.java.Dairy;
 import main.java.FrozenFood;
@@ -17,7 +18,7 @@ public class CalcCostTest {
 
 
     private Cart createCart(int age) throws Exception {
-        return new Cart(age); 
+        return new Cart(age, new Arizona()); 
     }
 
     // A sample Cart

@@ -156,7 +156,7 @@ public class CartTest {
 
 
     private Cart createCart(int age) throws Exception {
-        return new Cart(age); 
+        return new Cart(age, new Arizona()); 
     }
 
 
@@ -165,7 +165,7 @@ public class CartTest {
 
         //Cart must have several items including more than 3 produce 
         //and multiple alcohol and frozen food items.
-        nodeCoverage1 = new Cart(30);
+        nodeCoverage1 = new Cart(30, new Arizona());
 
         for(int i = 0; i < 2; i++) {
             nodeCoverage1.addItem(new Dairy());
@@ -182,7 +182,7 @@ public class CartTest {
 
         //same as node coverage 1 but under age
 
-        nodeCoverage2 = new Cart(15); 
+        nodeCoverage2 = new Cart(15, new Arizona()); 
 
         for(int i = 0; i < 2; i++) {
             nodeCoverage2.addItem(new Dairy());
@@ -199,7 +199,7 @@ public class CartTest {
 
         //mult items in the cart no alc, no frozen, no produce 
 
-        pathCoverage1 = new Cart(30);
+        pathCoverage1 = new Cart(30, new Arizona());
 
         for(int i = 0; i < 2; i++) {
             pathCoverage1.addItem(new Dairy());
@@ -209,7 +209,7 @@ public class CartTest {
         }
 
         //mult items in cart, 1 produce, no alc no frozen food
-        pathCoverage2 = new Cart(30);
+        pathCoverage2 = new Cart(30, new Arizona());
         pathCoverage2.addItem(new Produce());
 
         for(int i = 0; i < 2; i++) {
@@ -221,7 +221,7 @@ public class CartTest {
 
         //Multiple items 6 produce, no alcohol, no frozen food
 
-        pathCoverage3 = new Cart(30);
+        pathCoverage3 = new Cart(30, new Arizona());
 
         for(int i = 0; i < 2; i++) {
             pathCoverage3.addItem(new Dairy());
@@ -236,7 +236,7 @@ public class CartTest {
 
         //Multiple items no produce, 2 alcohol, no frozen food
 
-        pathCoverage4 = new Cart(30);
+        pathCoverage4 = new Cart(30, new Arizona());
         for(int i = 0; i< 2;i++) {
             pathCoverage4.addItem(new Alcohol());
         }
@@ -248,7 +248,7 @@ public class CartTest {
         }
 
         //Multiple items no produce 2 alcohol, no frozen food under age
-        pathCoverage5 = new Cart(15);
+        pathCoverage5 = new Cart(15, new Arizona());
         for(int i = 0; i< 2;i++) {
             pathCoverage5.addItem(new Alcohol());
         }
@@ -261,7 +261,7 @@ public class CartTest {
 
         //Multiple items no produce, no alcohol, 2 frozen food.
 
-        pathCoverage6 = new Cart(30);
+        pathCoverage6 = new Cart(30, new Arizona());
 
         for(int i = 0; i< 2;i++) {
             pathCoverage6.addItem(new FrozenFood());
@@ -274,7 +274,7 @@ public class CartTest {
         }
 
         //Multiple items no produce , 2 alchohol, 2 frozen food. 
-        pathCoverage7 = new Cart(30);
+        pathCoverage7 = new Cart(30, new Arizona());
 
         for(int i = 0; i< 2;i++) {
             pathCoverage7.addItem(new FrozenFood());
@@ -290,7 +290,7 @@ public class CartTest {
         }
 
         //mult items under age no alcohol
-        pathCoverage8 = new Cart(15);
+        pathCoverage8 = new Cart(15, new Arizona());
 
         for(int i = 0; i < 2; i++) {
             pathCoverage8.addItem(new Dairy());
@@ -305,9 +305,9 @@ public class CartTest {
 
 
         //Testing getTax
-        taxTestCA = new Cart(30);
-        taxTestNY = new Cart(30);
-        taxTestCO = new Cart(30);
+        taxTestCA = new Cart(30, new Arizona());
+        taxTestNY = new Cart(30, new Arizona());
+        taxTestCO = new Cart(30, new Arizona());
 
 
         ////////////////////////////////////////////////////////////
@@ -818,43 +818,14 @@ public class CartTest {
     }
 
 
-    ///////Testing getTax
 
-    @Test
-    public void thetaxTestCa(){
-        double tax = taxTestCA.getTax(10, "CA");
-        double expected = .9; 
-        assertEquals(expected, tax, .01); 
-    }
-
-    @Test
-    public void thetaxTestCO(){
-        double tax = taxTestCO.getTax(10, "CO");
-        double expected = .7; 
-        assertEquals(expected, tax, .01); 
-    }
-
-    @Test
-    public void thetaxTestNY(){
-        double tax = taxTestNY.getTax(10, "NY");
-        double expected = 1.0; 
-        assertEquals(expected, tax, .01); 
-    }
-
-    @Test
-    public void theTaxTest() {
-        double tax = taxTestNY.getTax(10, "");
-        double expected = 10; 
-        assertEquals(expected, tax, .01); 
-
-    }
 
 
     //Testing remove produce
 
     @Test
     public void testRemove() throws UnderAgeException {
-        Cart removeCart = new Cart(30); 
+        Cart removeCart = new Cart(30, new Arizona()); 
         removeCart.addItem(new Dairy());
         removeCart.removeItem(new Dairy()); 
         double cost = removeCart.calcCost();

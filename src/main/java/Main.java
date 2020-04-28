@@ -18,7 +18,7 @@ public class Main {
 
         Dairy milk = new Dairy();
 
-        Cart cart = new Cart(25);
+        Cart cart = new Cart(25, new Arizona());
         cart.addItem(apple);
         cart.addItem(orange);
         cart.addItem(banana);

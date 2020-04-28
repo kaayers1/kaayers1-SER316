@@ -8,6 +8,12 @@ public class Cart {
 
     protected int userAge;
     public List<Product> cart;
+    private int dairyCount;
+    private int meatCount;
+    private int produceCount;
+    private int alcoholCount;
+    private int frozenCount;
+    
     //SER316 TASK 2 SPOT-BUGS FIX
 
 
@@ -29,6 +35,7 @@ public class Cart {
      * @throws UnderAgeException occurs when someone under the age of 21 attempts to buy alcohol 
      */
     public double calcCost() throws UnderAgeException {
+        this.countItems();
         int beforeTax;
 
         beforeTax = this.subTotal() - this.amountSaved();
@@ -43,63 +50,53 @@ public class Cart {
     
     public int subTotal() {
         int subTotal = 0;
+        subTotal += dairyCount * 3; 
+        subTotal += meatCount * 10;
+        subTotal += produceCount * 2;
+        subTotal += alcoholCount * 8;
+        subTotal += frozenCount * 5; 
+     
+        return subTotal;    
+    }
+    
+    public void countItems(){
+        dairyCount = 0;
+        meatCount = 0;
+        produceCount = 0;
+        alcoholCount = 0;
+        frozenCount = 0;
         for (int i = 0; i < cart.size(); i++) {
             if (cart.get(i).getClass() == Dairy.class) {
-                subTotal += 3;
+                dairyCount ++;
             } else if (cart.get(i).getClass() == Meat.class) {
-                subTotal += 10;
+                meatCount ++;
             } else if (cart.get(i).getClass() == Produce.class) {
-                subTotal += 2;
+                produceCount ++;
             } else if (cart.get(i).getClass() == Alcohol.class) {
-                subTotal += 8;
+                alcoholCount ++;
             } else if (cart.get(i).getClass() == FrozenFood.class) {
-                subTotal += 5;
+                frozenCount ++;
             }
-        }
-        return subTotal; 
-        
+        } 
     }
-
-
-
-
-
-    /**
-    Method: None
-    Inputs: None
-    Returns: int
-    Description: Throws underAgeException when someone under the age 
-     * of 21 attempts to purchase alcohol. 
-     */
-    public int amountSaved() throws UnderAgeException {
-        int produceCount = 0;
-        int alcoholCount = 0;
-        int frozenCount = 0;
-
-        int produceDiscount = 0;
-        int comboDiscount = 0;
-
-        for (int i = 0; i < cart.size(); i++) {
-            if (cart.get(i).getClass() == Produce.class) {
-                produceCount++;
-            } else if (cart.get(i).getClass() == Alcohol.class) {   
-                alcoholCount++;
-            } else if (cart.get(i).getClass() == FrozenFood.class) {
-                frozenCount++;
-            }
-        }
-
+    
+    public void underAgeCheck() throws UnderAgeException {
         if (userAge < 21 && alcoholCount > 0) {
             throw new UnderAgeException("This buyer is under age!");
-        }
+        }  
+    }
+    
+   
 
-
+    public int amountSaved() throws UnderAgeException {
+        this.countItems();
+        int produceDiscount = 0;
+        int comboDiscount = 0;
+        this.underAgeCheck();
         produceDiscount = produceCount / 3; 
         if (frozenCount != 0 && alcoholCount != 0) { 
             comboDiscount = ((alcoholCount + frozenCount) / 2) * 3; 
         }
-
-
         return (produceDiscount + comboDiscount);
     }
 

@@ -3,6 +3,11 @@ plugins {
     id "checkstyle"
 }
 
+
+plugins {
+    id 'pmd'
+}
+
 apply plugin: 'application'
 apply plugin: 'jacoco'
 
@@ -14,6 +19,7 @@ mainClassName = 'main.java.Main'
 // In this section you declare where to find the dependencies of your project
 repositories {
     jcenter()
+    mavenCentral()
 }
 
 // In this section you declare the dependencies for your production and test code
@@ -26,6 +32,17 @@ dependencies {
 test {
 	//exclude '**/BlackBoxGiven.class'
 }
+
+apply plugin: "pmd"
+pmd {
+  ignoreFailures = true 
+  sourceSets = [sourceSets.main]
+  reportsDir = file("$project.buildDir/reports/pmd")
+  ruleSets = []
+  ruleSetConfig = resources.text.fromFile('ruleset.xml')
+}
+
+
 
 ///////////////////////////////////////////////////////////////////////
 // Configure Checkstyle
